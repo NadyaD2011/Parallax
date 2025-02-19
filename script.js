@@ -40,5 +40,29 @@ document.addEventListener('DOMContentLoaded', function(){
             coordXpercent = coordX / parallaxWidth * 100
             coordYpercent = coordY / parallaxHeight * 100
         })
+
+        let thresholdSets = [];
+
+        for (let i = 0; i<=1 ;i+=0.005){
+            thresholdSets.push(i)
+        }
+
+        function setParallaxStyle(scrollTopPercent){
+            parallaxContent.style.cssText = `transform: translate(0%, -${scrollTopPercent / 9}%);`;
+            mountains.parentElement.style.cssText = `transform: translate(0%, -${scrollTopPercent / 6}%);`;
+            human.parentElement.style.cssText = `transform: translate(0%, -${scrollTopPercent / 3}%);`;
+        }
+
+        let callback = (entries, observer) => {
+            let parallaxHeight = parallax.getBoundingClientRect().height
+            let scrollTopPercent = window.pageYOffset / parallaxHeight * 100
+            setParallaxStyle(scrollTopPercent)
+        }
+
+        const observer = new IntersectionObserver(callback,{
+            threshold: thresholdSets 
+        });
+
+        observer.observe(parallaxContent)
     }
 })
