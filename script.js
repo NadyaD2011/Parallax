@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function(){
         let clouds = document.querySelector('.images__clouds')
         let mountains = document.querySelector('.images__mountains')
         let human = document.querySelector('.images__human')
-        let parallaxContent = document.querySelector('.parallax__content')
+        let parallaxContent = document.querySelector('.content__container')
 
         let forClouds = 40
         let forMountains = 20
